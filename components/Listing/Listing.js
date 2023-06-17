@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native'
 
 import { styles } from './styles'
 
-export const Listing = () => {
+export function Listing() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Today’s tasks</Text>
