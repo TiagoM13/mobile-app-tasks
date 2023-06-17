@@ -1,10 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Header } from '../components/Header/Header';
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello!!! TodoList</Text>
+      <Header />
+
+      {/* Input Search */}
+
+      {/* List Items... */}
+      <View style={styles.content}>
+        <Text style={styles.text}>Today’s tasks</Text>
+      </View>
     </View>
   );
 }
@@ -12,13 +21,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: 60
+  },
+  // Listing
+  content: {
+    flex: 1
   },
   text: {
     color: '#fff',
+    fontFamily: 'Roboto_700Bold',
     fontSize: 24,
-    fontWeight: 'bold',
-    fontFamily: 'Roboto_400Regular'
-  }
+    lineHeight: 24,
+    fontWeight: 600,
+  },
 });
