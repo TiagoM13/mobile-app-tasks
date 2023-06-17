@@ -8,7 +8,7 @@ export function Header() {
   return (
     <View style={styles.container}>
       <View>
-        <Image source={ImgProfile} style={styles.image} />
+        <Image source={ImgProfile} alt="Profile image" style={styles.image} />
         <Text style={styles.text}>Good evening, Tiago</Text>
       </View>
     </View>
