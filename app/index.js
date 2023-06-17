@@ -1,7 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
-import { Header } from '../components/Header/Header';
+import { Header } from '../components/Header/Header'
+import { Listing } from '../components/Listing/Listing'
 
 export default function App() {
   return (
@@ -10,28 +11,14 @@ export default function App() {
 
       {/* Input Search */}
 
-      {/* List Items... */}
-      <View style={styles.content}>
-        <Text style={styles.text}>Today’s tasks</Text>
-      </View>
+      <Listing />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 60
+    paddingTop: 60,
   },
-  // Listing
-  content: {
-    flex: 1
-  },
-  text: {
-    color: '#fff',
-    fontFamily: 'Roboto_700Bold',
-    fontSize: 24,
-    lineHeight: 24,
-    fontWeight: 600,
-  },
-});
+})
