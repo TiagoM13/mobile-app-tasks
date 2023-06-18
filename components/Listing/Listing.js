@@ -11,7 +11,10 @@ export function Listing() {
       <Text style={styles.text}>Today’s tasks</Text>
 
       {/* List items... */}
-      <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
+      >
         <Item time="8:00 AM" description="Go to church" />
         <Item time="12:00 PM" description="Cook for the family" />
         <Item time="2:00 PM" description="Make my hair" />
