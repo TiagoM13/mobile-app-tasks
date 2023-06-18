@@ -1,12 +1,14 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 
 import { Header } from '../components/Header/Header'
 import { Listing } from '../components/Listing/Listing'
 
+import { styles } from './styles'
+
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={styles.app}>
       <Header />
 
       {/* Input Search */}
@@ -15,10 +17,3 @@ export default function App() {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 60,
-  },
-})
