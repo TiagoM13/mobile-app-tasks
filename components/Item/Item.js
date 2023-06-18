@@ -1,10 +1,12 @@
 import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, View } from 'react-native'
 import {
   MaterialIcons,
   MaterialCommunityIcons,
   Ionicons,
 } from '@expo/vector-icons'
+
+import { Button } from '../Buttton/Button'
 
 import THEME from '../../theme'
 import { styles } from './styles'
@@ -25,18 +27,28 @@ export function Item(props) {
       {/* buttons */}
       <View style={styles.contentContainer}>
         {/* button edit */}
-        <TouchableOpacity activeOpacity={0.7}>
-          <MaterialCommunityIcons
-            name="playlist-edit"
-            size={25}
-            color={THEME.COLORS.YELLOW}
-          />
-        </TouchableOpacity>
+        <Button
+          action={() => console.log('Edit Item')}
+          icon={
+            <MaterialCommunityIcons
+              name="playlist-edit"
+              size={25}
+              color={THEME.COLORS.YELLOW}
+            />
+          }
+        />
 
         {/* button delete */}
-        <TouchableOpacity activeOpacity={0.7}>
-          <MaterialIcons name="delete" size={25} color={THEME.COLORS.YELLOW} />
-        </TouchableOpacity>
+        <Button
+          action={() => console.log('Delete Item')}
+          icon={
+            <MaterialIcons
+              name="delete"
+              size={25}
+              color={THEME.COLORS.YELLOW}
+            />
+          }
+        />
       </View>
     </View>
   )
