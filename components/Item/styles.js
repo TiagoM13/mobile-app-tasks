@@ -5,7 +5,7 @@ import THEME from '../../theme'
 export const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginTop: 20,
+    marginBottom: 20,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: THEME.COLORS.WHITE_300,
