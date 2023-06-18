@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native'
 
+import THEME from '../../theme'
+
 export const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
@@ -11,10 +13,10 @@ export const styles = StyleSheet.create({
     borderRadius: 9999,
   },
   text: {
-    color: '#fff',
+    color: THEME.COLORS.WHITE,
     fontSize: 16,
     lineHeight: 19,
     fontWeight: '400',
-    fontFamily: 'Roboto_400Regular',
+    fontFamily: THEME.FONTS.REGULAR,
   },
 })
