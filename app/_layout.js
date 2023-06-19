@@ -5,7 +5,9 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet } from 'react-native'
+import { View } from 'react-native'
+
+import { styles } from './styles'
 
 export default function Layout() {
   const [fonts] = useFonts({
@@ -18,7 +20,7 @@ export default function Layout() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.layout}>
       <StatusBar style="light" translucent />
       <Stack
         screenOptions={{
@@ -33,10 +35,3 @@ export default function Layout() {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-})
