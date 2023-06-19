@@ -1,23 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View } from 'react-native'
-import {
-  MaterialIcons,
-  MaterialCommunityIcons,
-  Ionicons,
-} from '@expo/vector-icons'
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { Button } from '../Buttton/Button'
+import { Checkbox } from '../Checkbox/Checkbox'
 
 import THEME from '../../theme'
 import { styles } from './styles'
 
 export function Item(props) {
+  const [checked, setChecked] = useState(false)
+
+  function toggleCheckedItem() {
+    setChecked(!checked)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <View>
-          <Ionicons name="md-checkbox" size={30} color={THEME.COLORS.YELLOW} />
-        </View>
+        <Checkbox checked={checked} onCheck={toggleCheckedItem} />
+
         <View style={styles.contentContainer}>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={styles.description}>{props.description}</Text>
