@@ -28,12 +28,16 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: THEME.FONTS.REGULAR,
   },
-  description: {
-    color: THEME.COLORS.WHITE,
-    fontSize: 18,
-    lineHeight: 20,
-    fontWeight: '700',
-    fontFamily: THEME.FONTS.REGULAR,
-    // textDecorationLine: 'line-through',
-  },
 })
+
+export const text = ({ checked }) =>
+  StyleSheet.create({
+    description: {
+      color: checked ? THEME.COLORS.WHITE_300 : THEME.COLORS.WHITE,
+      fontSize: 18,
+      lineHeight: 20,
+      fontWeight: '700',
+      fontFamily: THEME.FONTS.REGULAR,
+      textDecorationLine: checked ? 'line-through' : 'none',
+    },
+  })

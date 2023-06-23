@@ -6,7 +6,7 @@ import { Button } from '../Buttton/Button'
 import { Checkbox } from '../Checkbox/Checkbox'
 
 import THEME from '../../theme'
-import { styles } from './styles'
+import { styles, text } from './styles'
 
 export function Item(props) {
   const [checked, setChecked] = useState(false)
@@ -22,7 +22,7 @@ export function Item(props) {
 
         <View style={styles.contentContainer}>
           <Text style={styles.time}>{props.time}</Text>
-          <Text style={styles.description}>{props.description}</Text>
+          <Text style={text({ checked }).description}>{props.description}</Text>
         </View>
       </View>
 
