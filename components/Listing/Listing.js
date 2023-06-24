@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 
 import { Item } from '../Item/Item'
+import { Tasks } from '../../database'
 
 import { styles } from './styles'
 
@@ -15,9 +16,9 @@ export function Listing() {
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
-        <Item time="8:00 AM" description="Go to church" />
-        <Item time="12:00 PM" description="Cook for the family" />
-        <Item time="2:00 PM" description="Make my hair" />
+        {Tasks.map((task) => (
+          <Item key={task.id} time={task.time} description={task.description} />
+        ))}
       </ScrollView>
     </View>
   )
