@@ -2,11 +2,13 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 
 import { Item } from '../Item/Item'
-import { Tasks } from '../../database'
+import { useTaskContext } from '../../hooks/taskContext'
 
 import { styles } from './styles'
 
 export function Listing() {
+  const { tasks } = useTaskContext()
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Today’s tasks</Text>
@@ -16,8 +18,13 @@ export function Listing() {
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
-        {Tasks.map((task) => (
-          <Item key={task.id} time={task.time} description={task.description} />
+        {tasks.map((task) => (
+          <Item
+            key={task.id}
+            id={task.id}
+            time={task.time}
+            description={task.description}
+          />
         ))}
       </ScrollView>
     </View>
