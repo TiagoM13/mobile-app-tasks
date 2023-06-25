@@ -28,9 +28,11 @@ export default function Layout() {
           contentStyle: {
             backgroundColor: 'transparent',
           },
+          animation: 'fade',
         }}
       >
         <Stack.Screen name="index" />
+        <Stack.Screen name="register" />
       </Stack>
     </View>
   )
