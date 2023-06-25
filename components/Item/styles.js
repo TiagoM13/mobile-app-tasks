@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'space-between',
     gap: 15,
+    width: 280,
   },
   time: {
     color: THEME.COLORS.WHITE,
