@@ -26,14 +26,14 @@ export function Item(props) {
       <View style={styles.content}>
         <Checkbox checked={checked} onCheck={toggleCheckedItem} />
 
-        <View style={styles.contentContainer}>
+        <View style={styles.textContent}>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={text({ checked }).description}>{props.description}</Text>
         </View>
       </View>
 
       {/* buttons */}
-      <View style={styles.contentContainer}>
+      <View style={styles.buttonsContent}>
         {/* button edit */}
         <Button
           action={() => console.log('Edit Item')}

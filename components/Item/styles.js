@@ -17,15 +17,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
   },
-  contentContainer: {
+  textContent: {
     justifyContent: 'space-between',
     gap: 15,
-    width: 280,
+    width: 275,
+  },
+  buttonsContent: {
+    gap: 15,
   },
   time: {
     color: THEME.COLORS.WHITE,
-    fontSize: 14,
-    lineHeight: 15,
+    fontSize: 16,
+    lineHeight: 16,
     fontWeight: '400',
     fontFamily: THEME.FONTS.REGULAR,
   },
@@ -35,9 +38,9 @@ export const text = ({ checked }) =>
   StyleSheet.create({
     description: {
       color: checked ? THEME.COLORS.WHITE_300 : THEME.COLORS.WHITE,
-      fontSize: 18,
-      lineHeight: 20,
-      fontWeight: '700',
+      fontSize: 16,
+      lineHeight: 16,
+      fontWeight: '400',
       fontFamily: THEME.FONTS.REGULAR,
       textDecorationLine: checked ? 'line-through' : 'none',
     },
