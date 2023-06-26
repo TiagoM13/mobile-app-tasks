@@ -9,6 +9,9 @@ export const useTasks = () => {
   const { currentTime } = getHours()
   const [tasks, setTasks] = React.useState([])
 
+  const id =
+    tasks.length > 0 ? Math.ceil(tasks[tasks.length - 1].id + Math.random()) : 1
+
   // Load Tasks
   const loadTasks = async () => {
     try {
@@ -34,7 +37,7 @@ export const useTasks = () => {
   // Create Task
   const createTask = async (description) => {
     const newTask = {
-      id: Number(tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1),
+      id,
       time: currentTime,
       description,
     }
