@@ -33,7 +33,7 @@ export default function Register() {
       {/* input text */}
       <View style={{ flex: 1 }}>
         <TextInput
-          maxLength={50}
+          maxLength={40}
           value={description}
           onChangeText={setDescription}
           style={styles.input}
