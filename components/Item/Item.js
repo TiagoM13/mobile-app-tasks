@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
+import { useRouter } from 'expo-router'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { Button } from '../Buttton/Button'
@@ -10,8 +11,9 @@ import THEME from '../../theme'
 import { styles, text } from './styles'
 
 export function Item(props) {
+  const router = useRouter()
   const { deleteTask } = useTaskContext()
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = React.useState(false)
 
   function toggleCheckedItem() {
     setChecked(!checked)
@@ -36,7 +38,12 @@ export function Item(props) {
       <View style={styles.buttonsContent}>
         {/* button edit */}
         <Button
-          action={() => console.log('Edit Item')}
+          action={() =>
+            router.push({
+              pathname: 'update',
+              params: { id: props.id, description: props.description },
+            })
+          }
           icon={
             <MaterialCommunityIcons
               name="playlist-edit"
