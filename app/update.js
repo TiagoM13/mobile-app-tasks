@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, TextInput } from 'react-native'
+import { useRouter, useLocalSearchParams } from 'expo-router'
 import { MaterialIcons } from '@expo/vector-icons'
-import { useRouter } from 'expo-router'
 
 import { Header } from '../components/Header/Header'
 import { useTaskContext } from '../hooks/taskContext'
@@ -9,14 +9,22 @@ import { useTaskContext } from '../hooks/taskContext'
 import THEME from '../theme'
 import { styles } from './styles/register'
 
-export default function Register() {
-  const [description, setDescription] = React.useState(null)
-  const { createTask } = useTaskContext()
+export default function Update() {
+  const [updatedDescription, setUpdatedDescription] = React.useState(null)
+  const { tasks, updateTask } = useTaskContext()
   const router = useRouter()
+  const params = useLocalSearchParams()
+  const { id, description } = params
 
-  function handleCreateTask() {
-    createTask(description)
-    router.push('/')
+  function handleUpdateTask() {
+    const taskId = parseInt(id)
+    const taskToUpdate = tasks.find((task) => task.id === taskId)
+
+    if (taskToUpdate) {
+      updateTask(taskId, updatedDescription)
+
+      router.push('/')
+    }
   }
 
   return (
@@ -39,8 +47,9 @@ export default function Register() {
       <View style={{ flex: 1 }}>
         <TextInput
           maxLength={40}
-          value={description}
-          onChangeText={setDescription}
+          value={updatedDescription}
+          defaultValue={description}
+          onChangeText={setUpdatedDescription}
           style={styles.input}
           placeholder="Write a task..."
           placeholderTextColor={THEME.COLORS.WHITE}
@@ -50,9 +59,9 @@ export default function Register() {
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7}
-        onPress={handleCreateTask}
+        onPress={handleUpdateTask}
       >
-        <Text style={styles.textButton}>Save task</Text>
+        <Text style={styles.textButton}>Updated task</Text>
       </TouchableOpacity>
     </View>
   )

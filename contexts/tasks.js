@@ -10,14 +10,14 @@ const TaskContext = React.createContext({
 })
 
 const TaskProvider = ({ children }) => {
-  const { loadTasks, tasks, createTask, deleteTask } = useTasks()
+  const { loadTasks, tasks, createTask, deleteTask, updateTask } = useTasks()
 
   React.useEffect(() => {
     loadTasks()
   }, [])
 
   return (
-    <TaskContext.Provider value={{ tasks, createTask, deleteTask }}>
+    <TaskContext.Provider value={{ tasks, createTask, deleteTask, updateTask }}>
       {children}
     </TaskContext.Provider>
   )

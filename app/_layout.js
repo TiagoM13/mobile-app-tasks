@@ -36,6 +36,7 @@ export default function Layout() {
         >
           <Stack.Screen name="index" />
           <Stack.Screen name="register" />
+          <Stack.Screen name="update" />
         </Stack>
       </TaskProvider>
     </View>
