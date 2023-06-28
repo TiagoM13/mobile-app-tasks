@@ -1,9 +1,9 @@
 import { TouchableOpacity } from 'react-native'
+import { useRouter } from 'expo-router'
 import { Entypo } from '@expo/vector-icons'
 
-import { styles } from './styles'
 import THEME from '../../theme'
-import { useRouter } from 'expo-router'
+import { styles } from './styles'
 
 export function RegisterTaskButton() {
   const router = useRouter()
