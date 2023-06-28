@@ -14,6 +14,11 @@ export default function Register() {
   const { createTask } = useTaskContext()
   const router = useRouter()
 
+  function handleCreateTask() {
+    createTask(description)
+    router.push('/')
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -45,7 +50,7 @@ export default function Register() {
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7}
-        onPress={() => createTask(description)}
+        onPress={handleCreateTask}
       >
         <Text style={styles.textButton}>Save task</Text>
       </TouchableOpacity>
