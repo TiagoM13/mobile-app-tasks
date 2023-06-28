@@ -2,13 +2,13 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { useRouter } from 'expo-router'
 
-import { BackButton } from '../components/BackButton/BackButton'
-import { Header } from '../components/Header/Header'
-import { Input } from '../components/Input/Input'
-import { useTaskContext } from '../hooks/taskContext'
+import { BackButton } from '../src/components/BackButton/BackButton'
+import { Header } from '../src/components/Header/Header'
+import { Button } from '../src/components/Button/Button'
+import { Input } from '../src/components/Input/Input'
+import { useTaskContext } from '../src/hooks/taskContext'
 
 import { styles } from './styles/screens'
-import { Button } from '../components/Button/Button'
 
 export default function Register() {
   const [description, setDescription] = React.useState('')

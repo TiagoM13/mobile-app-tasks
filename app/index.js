@@ -1,9 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
 
-import { Header } from '../components/Header/Header'
-import { Listing } from '../components/Listing/Listing'
-import { RegisterTaskButton } from '../components/RegisterTaskButton/RegisterTaskButton'
+import { Header } from '../src/components/Header/Header'
+import { Listing } from '../src/components/Listing/Listing'
+import { RegisterTaskButton } from '../src/components/RegisterTaskButton/RegisterTaskButton'
 
 import { styles } from './styles'
 
