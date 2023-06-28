@@ -1,11 +1,9 @@
 import React from 'react'
-import { useRouter } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { getHours } from '../utils/getHours'
 
 export const useTasks = () => {
-  const router = useRouter()
   const { currentTime } = getHours()
   const [tasks, setTasks] = React.useState([])
 
@@ -47,8 +45,6 @@ export const useTasks = () => {
     try {
       await saveTasks(updateTasks)
       console.log('Nova tarefa adicionada:', newTask)
-
-      router.push('/')
     } catch (err) {
       console.log('Erro ao criar tarefa', err)
     }
