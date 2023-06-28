@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, TextInput } from 'react-native'
+import { View, Text } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import { MaterialIcons } from '@expo/vector-icons'
 
+import { BackButton } from '../components/BackButton/BackButton'
+import { Button } from '../components/Button/Button'
+import { Input } from '../components/Input/Input'
 import { Header } from '../components/Header/Header'
 import { useTaskContext } from '../hooks/taskContext'
 
-import THEME from '../theme'
-import { styles } from './styles/register'
+import { styles } from './styles/screens'
 
 export default function Update() {
   const [updatedDescription, setUpdatedDescription] = React.useState(null)
@@ -17,6 +18,11 @@ export default function Update() {
   const { id, description } = params
 
   function handleUpdateTask() {
+    if (updatedDescription === '') {
+      console.log('Escreva uma tarefa para poder atualizar!')
+      return
+    }
+
     const taskId = parseInt(id)
     const taskToUpdate = tasks.find((task) => task.id === taskId)
 
@@ -32,37 +38,19 @@ export default function Update() {
       <View style={styles.header}>
         <Header />
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.icon}
-          onPress={() => router.back()}
-        >
-          <MaterialIcons name="keyboard-arrow-left" size={40} color="white" />
-        </TouchableOpacity>
+        <BackButton />
       </View>
 
       <Text style={styles.text}>Create task</Text>
 
       {/* input text */}
-      <View style={{ flex: 1 }}>
-        <TextInput
-          maxLength={40}
-          value={updatedDescription}
-          defaultValue={description}
-          onChangeText={setUpdatedDescription}
-          style={styles.input}
-          placeholder="Write a task..."
-          placeholderTextColor={THEME.COLORS.WHITE}
-        />
-      </View>
+      <Input
+        value={updatedDescription}
+        defaultValue={description}
+        onChange={setUpdatedDescription}
+      />
 
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={handleUpdateTask}
-      >
-        <Text style={styles.textButton}>Updated task</Text>
-      </TouchableOpacity>
+      <Button press={handleUpdateTask} text="Updated task" />
     </View>
   )
 }
