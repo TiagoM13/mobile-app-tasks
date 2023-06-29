@@ -7,7 +7,7 @@ import {
 import { StatusBar } from 'expo-status-bar'
 import { View } from 'react-native'
 
-import { TaskProvider } from '../contexts/tasks'
+import { TaskProvider } from '@/contexts/tasks'
 
 import { styles } from './styles'
 

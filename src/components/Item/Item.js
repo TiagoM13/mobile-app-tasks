@@ -3,11 +3,12 @@ import { Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { Button } from '../Buttton/Button'
 import { Checkbox } from '../Checkbox/Checkbox'
-import { useTaskContext } from '../../hooks/taskContext'
+import { IconButton } from '../IconButton/IconButton'
 
-import THEME from '../../theme'
+import { useTaskContext } from '@/hooks/taskContext'
+
+import THEME from '@/theme'
 import { styles, text } from './styles'
 
 export function Item(props) {
@@ -37,7 +38,7 @@ export function Item(props) {
       {/* buttons */}
       <View style={styles.buttonsContent}>
         {/* button edit */}
-        <Button
+        <IconButton
           action={() =>
             router.push({
               pathname: 'update',
@@ -54,7 +55,7 @@ export function Item(props) {
         />
 
         {/* button delete */}
-        <Button
+        <IconButton
           action={handleDeleteTask}
           icon={
             <MaterialIcons

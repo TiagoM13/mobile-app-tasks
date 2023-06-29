@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { useTasks } from '../hooks/tasks'
+import { useTasks } from '@/hooks/tasks'
 
 const TaskContext = React.createContext({
   tasks: [],

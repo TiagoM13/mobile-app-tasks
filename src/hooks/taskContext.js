@@ -1,5 +1,5 @@
 import React from 'react'
-import { TaskContext } from '../contexts/tasks'
+import { TaskContext } from '@/contexts/tasks'
 
 export const useTaskContext = () => {
   const context = React.useContext(TaskContext)

@@ -1,10 +1,15 @@
 import { StyleSheet } from 'react-native'
 
-import THEME from '../../theme'
+import THEME from '@/theme'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 60,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   text: {
     color: THEME.COLORS.WHITE,

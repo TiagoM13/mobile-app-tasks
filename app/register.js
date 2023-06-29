@@ -1,20 +1,27 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, TextInput } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import { View, Text } from 'react-native'
 import { useRouter } from 'expo-router'
 
-import { Header } from '../components/Header/Header'
-import { useTaskContext } from '../hooks/taskContext'
+import { Header } from '@/components/Header/Header'
+import { BackButton } from '@/components/BackButton/BackButton'
+import { Input } from '@/components/Input/Input'
+import { Button } from '@/components/Button/Button'
 
-import THEME from '../theme'
-import { styles } from './styles/register'
+import { useTaskContext } from '@/hooks/taskContext'
+
+import { styles } from './styles/screens'
 
 export default function Register() {
-  const [description, setDescription] = React.useState(null)
+  const [description, setDescription] = React.useState('')
   const { createTask } = useTaskContext()
   const router = useRouter()
 
   function handleCreateTask() {
+    if (description === '') {
+      console.log('Escreva uma tarefa para prosseguir!')
+      return
+    }
+
     createTask(description)
     router.push('/')
   }
@@ -24,36 +31,19 @@ export default function Register() {
       <View style={styles.header}>
         <Header />
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.icon}
-          onPress={() => router.back()}
-        >
-          <MaterialIcons name="keyboard-arrow-left" size={40} color="white" />
-        </TouchableOpacity>
+        <BackButton />
       </View>
 
       <Text style={styles.text}>Create task</Text>
 
       {/* input text */}
-      <View style={{ flex: 1 }}>
-        <TextInput
-          maxLength={40}
-          value={description}
-          onChangeText={setDescription}
-          style={styles.input}
-          placeholder="Write a task..."
-          placeholderTextColor={THEME.COLORS.WHITE}
-        />
-      </View>
+      <Input
+        value={description}
+        onChange={setDescription}
+        defaultValue={description}
+      />
 
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={handleCreateTask}
-      >
-        <Text style={styles.textButton}>Save task</Text>
-      </TouchableOpacity>
+      <Button press={handleCreateTask} text="Save task" />
     </View>
   )
 }
