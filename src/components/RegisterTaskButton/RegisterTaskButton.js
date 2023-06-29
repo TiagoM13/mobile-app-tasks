@@ -2,7 +2,7 @@ import { TouchableOpacity } from 'react-native'
 import { useRouter } from 'expo-router'
 import { Entypo } from '@expo/vector-icons'
 
-import THEME from '../../theme'
+import THEME from '@/theme'
 import { styles } from './styles'
 
 export function RegisterTaskButton() {

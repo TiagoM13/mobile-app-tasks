@@ -5,9 +5,10 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { Checkbox } from '../Checkbox/Checkbox'
 import { IconButton } from '../IconButton/IconButton'
-import { useTaskContext } from '../../hooks/taskContext'
 
-import THEME from '../../theme'
+import { useTaskContext } from '@/hooks/taskContext'
+
+import THEME from '@/theme'
 import { styles, text } from './styles'
 
 export function Item(props) {

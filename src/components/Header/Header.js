@@ -1,6 +1,6 @@
 import { View, Image, Text } from 'react-native'
 
-import ImgProfile from '../../assets/tiago-mota.jpg'
+import ImgProfile from '@/assets/tiago-mota.jpg'
 
 import { styles } from './styles'
 
