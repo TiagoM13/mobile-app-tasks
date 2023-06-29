@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 
 import { Item } from '../Item/Item'
-import { useTaskContext } from '../../hooks/taskContext'
+
+import { useTaskContext } from '@/hooks/taskContext'
 
 import { styles } from './styles'
 

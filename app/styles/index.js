@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-import THEME from '../../src/theme'
+import THEME from '@/theme'
 
 export const styles = StyleSheet.create({
   layout: {

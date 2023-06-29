@@ -1,7 +1,7 @@
 import React from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { getHours } from '../utils/getHours'
+import { getHours } from '@/utils/getHours'
 
 export const useTasks = () => {
   const { currentTime } = getHours()
