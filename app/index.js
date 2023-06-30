@@ -12,8 +12,6 @@ export default function App() {
     <View style={styles.app}>
       <Header />
 
-      {/* Input Search */}
-
       <Listing />
       <RegisterTaskButton />
     </View>
