@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { useRouter } from 'expo-router'
+import { View, Text, Alert } from 'react-native'
 
 import { Header } from '@/components/Header/Header'
 import { BackButton } from '@/components/BackButton/BackButton'
@@ -14,16 +13,14 @@ import { styles } from './styles/screens'
 export default function Register() {
   const [description, setDescription] = React.useState('')
   const { createTask } = useTaskContext()
-  const router = useRouter()
 
   function handleCreateTask() {
     if (description === '') {
-      console.log('Escreva uma tarefa para prosseguir!')
+      Alert.alert('Empty field', 'Write a task to proceed!')
       return
     }
 
     createTask(description)
-    router.push('/')
   }
 
   return (

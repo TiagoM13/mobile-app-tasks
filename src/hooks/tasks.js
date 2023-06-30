@@ -1,9 +1,12 @@
 import React from 'react'
+import { Alert } from 'react-native'
+import { useRouter } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { getHours } from '@/utils/getHours'
 
 export const useTasks = () => {
+  const router = useRouter()
   const { currentTime } = getHours()
   const [tasks, setTasks] = React.useState([])
 
@@ -18,7 +21,7 @@ export const useTasks = () => {
         setTasks(JSON.parse(storedTasks))
       }
     } catch (err) {
-      console.log('Erro ao carregar as tarefas', err)
+      console.log('Error loading tasks', err)
     }
   }
 
@@ -28,7 +31,7 @@ export const useTasks = () => {
       await AsyncStorage.setItem('tasks', JSON.stringify(newTasks))
       setTasks(newTasks)
     } catch (err) {
-      console.log('Erro ao salvar tarefa', err)
+      console.log('Error saving task', err)
     }
   }
 
@@ -44,9 +47,17 @@ export const useTasks = () => {
 
     try {
       await saveTasks(updateTasks)
-      console.log('Nova tarefa adicionada:', newTask)
+
+      Alert.alert('Task added', 'New task added successfully!', [
+        {
+          text: 'ok',
+          onPress: () => router.push('/'),
+        },
+      ])
     } catch (err) {
-      console.log('Erro ao criar tarefa', err)
+      Alert.alert('Error adding task', 'Could not add task')
+
+      console.log('Error creating task', err)
     }
   }
 
@@ -56,9 +67,9 @@ export const useTasks = () => {
 
     try {
       await saveTasks(updateTasks)
-      console.log('Dados removidos com sucesso!', taskId)
+      console.log('Task removed successfully')
     } catch (err) {
-      console.log('Erro ao remover os dados:', err)
+      console.log('Error removing task', err)
     }
   }
 
@@ -76,9 +87,15 @@ export const useTasks = () => {
 
     try {
       await saveTasks(updatedTasks)
-      console.log('Tarefa atualizada com sucesso', { updatedTask })
+      Alert.alert('Task updated', 'Task updated successfully!', [
+        {
+          text: 'ok',
+          onPress: () => router.push('/'),
+        },
+      ])
     } catch (err) {
-      console.log('Erro ao atualizar tarefa', err)
+      Alert.alert('Error updating task', 'Unable to update task')
+      console.log('Error updating task', err)
     }
   }
 
