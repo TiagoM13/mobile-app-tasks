@@ -15,19 +15,28 @@ export function Listing() {
       <Text style={styles.text}>Today’s tasks</Text>
 
       {/* List items... */}
-      <ScrollView
-        contentContainerStyle={{ paddingBottom: 100 }}
-        showsVerticalScrollIndicator={false}
-      >
-        {tasks.map((task) => (
-          <Item
-            key={task.id}
-            id={task.id}
-            time={task.time}
-            description={task.description}
-          />
-        ))}
-      </ScrollView>
+      {tasks.length ? (
+        <ScrollView
+          contentContainerStyle={{ paddingBottom: 100 }}
+          showsVerticalScrollIndicator={false}
+        >
+          {tasks.map((task) => (
+            <Item
+              key={task.id}
+              id={task.id}
+              time={task.time}
+              description={task.description}
+              checked={task.checked}
+            />
+          ))}
+        </ScrollView>
+      ) : (
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Text style={styles.empty}>Não há tarefas criadas</Text>
+        </View>
+      )}
     </View>
   )
 }
