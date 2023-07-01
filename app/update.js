@@ -15,7 +15,7 @@ export default function Update() {
   const [updatedDescription, setUpdatedDescription] = React.useState(null)
   const { tasks, updateTask } = useTaskContext()
   const params = useLocalSearchParams()
-  const { id, description } = params
+  const { id, description, checked } = params
 
   function handleUpdateTask() {
     if (updatedDescription === '') {
@@ -27,7 +27,7 @@ export default function Update() {
     const taskToUpdate = tasks.find((task) => task.id === taskId)
 
     if (taskToUpdate) {
-      updateTask(taskId, updatedDescription)
+      updateTask(taskId, updatedDescription, checked)
     }
   }
 
