@@ -41,6 +41,7 @@ export const useTasks = () => {
       id,
       time: currentTime,
       description,
+      checked: false,
     }
 
     const updateTasks = [...tasks, newTask]
@@ -74,11 +75,12 @@ export const useTasks = () => {
   }
 
   // Update Tasks
-  const updateTask = async (id, description) => {
+  const updateTask = async (id, description, checked) => {
     const updatedTask = {
       id,
       time: currentTime,
       description,
+      checked,
     }
 
     const updatedTasks = tasks.map((task) =>
@@ -87,6 +89,7 @@ export const useTasks = () => {
 
     try {
       await saveTasks(updatedTasks)
+
       Alert.alert('Task updated', 'Task updated successfully!', [
         {
           text: 'ok',
@@ -99,5 +102,26 @@ export const useTasks = () => {
     }
   }
 
-  return { tasks, loadTasks, createTask, deleteTask, updateTask }
+  // toggle checkbox
+  const toggleCheckedTask = async (taskId) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, checked: !task.checked } : task,
+    )
+
+    try {
+      await saveTasks(updatedTasks)
+      console.log('Updated task status')
+    } catch (err) {
+      console.log('Error updating task status', err)
+    }
+  }
+
+  return {
+    tasks,
+    loadTasks,
+    createTask,
+    deleteTask,
+    updateTask,
+    toggleCheckedTask,
+  }
 }

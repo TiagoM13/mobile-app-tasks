@@ -6,18 +6,19 @@ const TaskContext = React.createContext({
   tasks: [],
   createTask: () => { },
   deleteTask: () => { },
-  updateTask: () => { }
+  updateTask: () => { },
+  toggleCheckedTask: () => { }
 })
 
 const TaskProvider = ({ children }) => {
-  const { loadTasks, tasks, createTask, deleteTask, updateTask } = useTasks()
+  const { loadTasks, tasks, createTask, deleteTask, updateTask, toggleCheckedTask } = useTasks()
 
   React.useEffect(() => {
     loadTasks()
   }, [])
 
   return (
-    <TaskContext.Provider value={{ tasks, createTask, deleteTask, updateTask }}>
+    <TaskContext.Provider value={{ tasks, createTask, deleteTask, updateTask, toggleCheckedTask }}>
       {children}
     </TaskContext.Provider>
   )
