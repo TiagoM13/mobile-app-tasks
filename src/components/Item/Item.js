@@ -13,11 +13,12 @@ import { styles, text } from './styles'
 
 export function Item(props) {
   const router = useRouter()
-  const { deleteTask } = useTaskContext()
-  const [checked, setChecked] = React.useState(false)
+  const { deleteTask, toggleCheckedTask } = useTaskContext()
+  const [checked, setChecked] = React.useState(props.checked)
 
-  function toggleCheckedItem() {
+  function handleToggleChecked() {
     setChecked(!checked)
+    toggleCheckedTask(props.id)
   }
 
   function handleDeleteTask() {
@@ -27,7 +28,7 @@ export function Item(props) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Checkbox checked={checked} onCheck={toggleCheckedItem} />
+        <Checkbox checked={checked} onCheck={handleToggleChecked} />
 
         <View style={styles.textContent}>
           <Text style={styles.time}>{props.time}</Text>
@@ -42,7 +43,11 @@ export function Item(props) {
           action={() =>
             router.push({
               pathname: 'update',
-              params: { id: props.id, description: props.description },
+              params: {
+                id: props.id,
+                description: props.description,
+                checked: props.checked,
+              },
             })
           }
           icon={
