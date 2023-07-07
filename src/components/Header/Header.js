@@ -1,9 +1,9 @@
 import { View, Image, Text } from 'react-native'
 
 import ImgProfile from '@/assets/tiago-mota.jpg'
+import { getSchedule } from '@/utils/getSchedule'
 
 import { styles } from './styles'
-import { getSchedule } from '@/utils/getSchedule'
 
 export function Header() {
   const { greeting } = getSchedule()
