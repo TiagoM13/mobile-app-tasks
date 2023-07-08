@@ -39,7 +39,7 @@ export default function Update() {
         <BackButton />
       </View>
 
-      <Text style={styles.text}>Create task</Text>
+      <Text style={styles.text}>Update task</Text>
 
       {/* input text */}
       <Input
