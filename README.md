@@ -2,6 +2,14 @@
 
 Aplicação de uma lista de tarefas, com as seguintes características, criação, listagem, atualização e deleção de tarefas, as tarefas são exibidas em tempo real, mostrando a hora da criação e sua descrição. O usuário pode interagir para concluir a tarefa ou desmarcar como incompleta, uma funcionalidade de toggle (checkbox).
 
+## Screenshots
+
+<div>
+  <img src="./src/assets/home.png" width="200" style="border-radius: 16px" alt="" />
+  <img src="./src/assets/create.png" width="200" style="border-radius: 16px" alt="" />
+  <img src="./src/assets/update.png" width="200" style="border-radius: 16px" alt="" />
+</div>
+
 ## Como rodar o projeto
 
 Clone esse repositório `todolist` em uma pasta de sua escolha
