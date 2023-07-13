@@ -4,21 +4,23 @@ import { useTasks } from '@/hooks/tasks'
 
 const TaskContext = React.createContext({
   tasks: [],
+  filteredTasks: [],
   createTask: () => { },
   deleteTask: () => { },
   updateTask: () => { },
-  toggleCheckedTask: () => { }
+  toggleCheckedTask: () => { },
+  filterTasks: () => { },
 })
 
 const TaskProvider = ({ children }) => {
-  const { loadTasks, tasks, createTask, deleteTask, updateTask, toggleCheckedTask } = useTasks()
+  const { loadTasks, tasks, createTask, deleteTask, updateTask, toggleCheckedTask, filteredTasks, filterTasks } = useTasks()
 
   React.useEffect(() => {
     loadTasks()
   }, [])
 
   return (
-    <TaskContext.Provider value={{ tasks, createTask, deleteTask, updateTask, toggleCheckedTask }}>
+    <TaskContext.Provider value={{ tasks, filteredTasks, createTask, deleteTask, updateTask, toggleCheckedTask, filterTasks, }}>
       {children}
     </TaskContext.Provider>
   )

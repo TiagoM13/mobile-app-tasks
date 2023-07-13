@@ -9,6 +9,7 @@ export const useTasks = () => {
   const router = useRouter()
   const { currentTime } = getHours()
   const [tasks, setTasks] = React.useState([])
+  const [filteredTasks, setFilteredTasks] = React.useState([])
 
   const id =
     tasks.length > 0 ? Math.ceil(tasks[tasks.length - 1].id + Math.random()) : 1
@@ -116,12 +117,23 @@ export const useTasks = () => {
     }
   }
 
+  // Search Tasks
+  const filterTasks = (query) => {
+    const filteredTasks = tasks.filter((task) =>
+      task.description.toLowerCase().includes(query.toLowerCase()),
+    )
+
+    setFilteredTasks(filteredTasks)
+  }
+
   return {
     tasks,
+    filteredTasks,
     loadTasks,
     createTask,
     deleteTask,
     updateTask,
     toggleCheckedTask,
+    filterTasks,
   }
 }
