@@ -14,11 +14,4 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
     marginBottom: 20,
   },
-  empty: {
-    color: THEME.COLORS.WHITE,
-    fontFamily: THEME.FONTS.BOLD,
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: 600,
-  },
 })
