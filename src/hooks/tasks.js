@@ -1,5 +1,4 @@
 import React from 'react'
-import { Alert } from 'react-native'
 import { useRouter } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -49,16 +48,9 @@ export const useTasks = () => {
 
     try {
       await saveTasks(updateTasks)
-
-      Alert.alert('Task added', 'New task added successfully!', [
-        {
-          text: 'ok',
-          onPress: () => router.push('/'),
-        },
-      ])
+      console.log('New task added successfully!')
+      router.push('/')
     } catch (err) {
-      Alert.alert('Error adding task', 'Could not add task')
-
       console.log('Error creating task', err)
     }
   }
@@ -90,15 +82,9 @@ export const useTasks = () => {
 
     try {
       await saveTasks(updatedTasks)
-
-      Alert.alert('Task updated', 'Task updated successfully!', [
-        {
-          text: 'ok',
-          onPress: () => router.push('/'),
-        },
-      ])
+      console.log('Task updated successfully!')
+      router.push('/')
     } catch (err) {
-      Alert.alert('Error updating task', 'Unable to update task')
       console.log('Error updating task', err)
     }
   }
