@@ -5,13 +5,14 @@ import THEME from '@/theme'
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  text: {
+  empty: {
     color: THEME.COLORS.WHITE,
     fontFamily: THEME.FONTS.BOLD,
-    fontSize: 24,
+    fontSize: 18,
     lineHeight: 24,
     fontWeight: 600,
-    marginBottom: 20,
   },
 })
