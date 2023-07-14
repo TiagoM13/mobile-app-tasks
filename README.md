@@ -37,7 +37,8 @@ Clone esse repositório `todolist` em uma pasta de sua escolha
 - Listagem em tempo real das tarefas
 - Atualização da tarefa
 - Deleção da tarefa
-- Salvando as tarefas criadas na mémoria do dispositivo
+- Salvando na mémoria do dispositivo
+- Busca de tarefas
 
 
 ## Stack utilizada
