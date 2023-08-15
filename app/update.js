@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Alert } from 'react-native'
 import { useLocalSearchParams } from 'expo-router'
+import { useForm } from 'react-hook-form'
 
 import { Header } from '@/components/Header/Header'
 import { BackButton } from '@/components/BackButton/BackButton'
@@ -12,13 +13,14 @@ import { useTaskContext } from '@/hooks/taskContext'
 import { styles } from './styles/screens'
 
 export default function Update() {
-  const [updatedDescription, setUpdatedDescription] = React.useState(null)
   const { tasks, updateTask } = useTaskContext()
   const params = useLocalSearchParams()
   const { id, description, checked } = params
 
-  function handleUpdateTask() {
-    if (updatedDescription === '') {
+  const { control, handleSubmit } = useForm()
+
+  function handleUpdateTask({ description }) {
+    if (description === '') {
       Alert.alert('Empty field', 'Write a task to be able to update!')
       return
     }
@@ -27,7 +29,7 @@ export default function Update() {
     const taskToUpdate = tasks.find((task) => task.id === taskId)
 
     if (taskToUpdate) {
-      updateTask(taskId, updatedDescription, checked)
+      updateTask(taskId, description, checked)
     }
   }
 
@@ -41,14 +43,9 @@ export default function Update() {
 
       <Text style={styles.text}>Update task</Text>
 
-      {/* input text */}
-      <Input
-        value={updatedDescription}
-        defaultValue={description}
-        onChange={setUpdatedDescription}
-      />
+      <Input control={control} name="description" defaultValue={description} />
 
-      <Button press={handleUpdateTask} text="Updated task" />
+      <Button press={handleSubmit(handleUpdateTask)} text="Updated task" />
     </View>
   )
 }
