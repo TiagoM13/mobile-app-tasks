@@ -112,6 +112,16 @@ export const useTasks = () => {
     setFilteredTasks(filteredTasks)
   }
 
+  // clear
+  const clearData = async () => {
+    try {
+      await AsyncStorage.clear()
+      console.log('Dados do AsyncStorage foram limpos com sucesso.')
+    } catch (error) {
+      console.error('Erro ao limpar dados do AsyncStorage:', error)
+    }
+  }
+
   return {
     tasks,
     filteredTasks,
@@ -121,5 +131,6 @@ export const useTasks = () => {
     updateTask,
     toggleCheckedTask,
     filterTasks,
+    clearData,
   }
 }
