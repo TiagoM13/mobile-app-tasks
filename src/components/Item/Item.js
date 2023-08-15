@@ -11,18 +11,29 @@ import { useTaskContext } from '@/hooks/taskContext'
 import THEME from '@/theme'
 import { styles, text } from './styles'
 
-export function Item(props) {
+export function Item({ checkedValue, id, time, description }) {
   const router = useRouter()
   const { deleteTask, toggleCheckedTask } = useTaskContext()
-  const [checked, setChecked] = React.useState(props.checked)
+  const [checked, setChecked] = React.useState(checkedValue)
 
   function handleToggleChecked() {
     setChecked(!checked)
-    toggleCheckedTask(props.id)
+    toggleCheckedTask(id)
   }
 
   function handleDeleteTask() {
-    deleteTask(props.id)
+    deleteTask(id)
+  }
+
+  function handleTaskUpdateRoute() {
+    router.push({
+      pathname: 'update',
+      params: {
+        id,
+        description,
+        checked,
+      },
+    })
   }
 
   return (
@@ -31,8 +42,8 @@ export function Item(props) {
         <Checkbox checked={checked} onCheck={handleToggleChecked} />
 
         <View style={styles.textContent}>
-          <Text style={styles.time}>{props.time}</Text>
-          <Text style={text({ checked }).description}>{props.description}</Text>
+          <Text style={styles.time}>{time}</Text>
+          <Text style={text({ checked }).description}>{description}</Text>
         </View>
       </View>
 
@@ -40,16 +51,7 @@ export function Item(props) {
       <View style={styles.buttonsContent}>
         {/* button edit */}
         <IconButton
-          action={() =>
-            router.push({
-              pathname: 'update',
-              params: {
-                id: props.id,
-                description: props.description,
-                checked: props.checked,
-              },
-            })
-          }
+          action={handleTaskUpdateRoute}
           icon={
             <MaterialCommunityIcons
               name="playlist-edit"
