@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Alert } from 'react-native'
+import { useForm } from 'react-hook-form'
 
 import { Header } from '@/components/Header/Header'
 import { BackButton } from '@/components/BackButton/BackButton'
@@ -11,10 +12,11 @@ import { useTaskContext } from '@/hooks/taskContext'
 import { styles } from './styles/screens'
 
 export default function Register() {
-  const [description, setDescription] = React.useState('')
   const { createTask } = useTaskContext()
 
-  function handleCreateTask() {
+  const { control, handleSubmit } = useForm()
+
+  function handleCreateTask({ description }) {
     if (description === '') {
       Alert.alert('Empty field', 'Write a task to proceed!')
       return
@@ -34,13 +36,9 @@ export default function Register() {
       <Text style={styles.text}>Create task</Text>
 
       {/* input text */}
-      <Input
-        value={description}
-        onChange={setDescription}
-        defaultValue={description}
-      />
+      <Input control={control} name="description" />
 
-      <Button press={handleCreateTask} text="Save task" />
+      <Button press={handleSubmit(handleCreateTask)} text="Save task" />
     </View>
   )
 }
