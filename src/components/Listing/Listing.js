@@ -25,7 +25,9 @@ export function Listing() {
 
       {tasks.length === 0 && <ErrorMessage text="No tasks created." />}
 
-      {filteredTasks.length === 0 && <ErrorMessage text="No tasks found." />}
+      {!!searchTerm && filteredTasks.length === 0 && (
+        <ErrorMessage text="No tasks found." />
+      )}
 
       <ScrollView
         style={{ marginTop: 20 }}
