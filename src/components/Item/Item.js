@@ -11,27 +11,25 @@ import { useTaskContext } from '@/hooks/taskContext'
 import THEME from '@/theme'
 import { styles, text } from './styles'
 
-export function Item({ checkedValue, id, time, description }) {
+export function Item({ task }) {
   const router = useRouter()
   const { deleteTask, toggleCheckedTask } = useTaskContext()
-  const [checked, setChecked] = React.useState(checkedValue)
 
   function handleToggleChecked() {
-    setChecked(!checked)
-    toggleCheckedTask(id)
+    toggleCheckedTask(task.id)
   }
 
   function handleDeleteTask() {
-    deleteTask(id)
+    deleteTask(task.id)
   }
 
   function handleTaskUpdateRoute() {
     router.push({
       pathname: 'update',
       params: {
-        id,
-        description,
-        checked,
+        id: task.id,
+        description: task.description,
+        checked: task.checked,
       },
     })
   }
@@ -39,11 +37,13 @@ export function Item({ checkedValue, id, time, description }) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Checkbox checked={checked} onCheck={handleToggleChecked} />
+        <Checkbox checked={task.checked} onCheck={handleToggleChecked} />
 
         <View style={styles.textContent}>
-          <Text style={styles.time}>{time}</Text>
-          <Text style={text({ checked }).description}>{description}</Text>
+          <Text style={styles.time}>{task.time}</Text>
+          <Text style={text({ checked: task.checked }).description}>
+            {task.description}
+          </Text>
         </View>
       </View>
 

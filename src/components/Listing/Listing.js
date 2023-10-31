@@ -35,13 +35,7 @@ export function Listing() {
         showsVerticalScrollIndicator={false}
       >
         {filteredTasks.map((task) => (
-          <Item
-            key={task.id}
-            id={task.id}
-            time={task.time}
-            description={task.description}
-            checked={task.checked}
-          />
+          <Item key={task.id} task={task} />
         ))}
       </ScrollView>
     </View>
