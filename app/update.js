@@ -38,14 +38,14 @@ export default function Update() {
       <View style={styles.header}>
         <Header />
 
-        <BackButton />
+        <Button type="back" />
       </View>
 
       <Text style={styles.text}>Update task</Text>
 
       <Input control={control} name="description" defaultValue={description} />
 
-      <Button press={handleSubmit(handleUpdateTask)} text="Updated task" />
+      <Button press={handleSubmit(handleUpdateTask)} label="Updated task" />
     </View>
   )
 }

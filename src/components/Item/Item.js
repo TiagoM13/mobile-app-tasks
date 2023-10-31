@@ -1,29 +1,27 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { Checkbox } from '../Checkbox/Checkbox'
-import { IconButton } from '../IconButton/IconButton'
+import { ActionButton } from '../ActionButton'
 
 import { useTaskContext } from '@/hooks/taskContext'
 
-import THEME from '@/theme'
 import { styles, text } from './styles'
 
 export function Item({ task }) {
   const router = useRouter()
-  const { deleteTask, toggleCheckedTask } = useTaskContext()
+  const { toggleCheckedTask, deleteTask } = useTaskContext()
 
-  function handleToggleChecked() {
+  const handleToggleChecked = React.useCallback(() => {
     toggleCheckedTask(task.id)
-  }
+  }, [toggleCheckedTask])
 
-  function handleDeleteTask() {
+  const handleDeleteTask = React.useCallback(() => {
     deleteTask(task.id)
-  }
+  }, [deleteTask])
 
-  function handleTaskUpdateRoute() {
+  const handleTaskUpdateRoute = React.useCallback(() => {
     router.push({
       pathname: 'update',
       params: {
@@ -32,7 +30,7 @@ export function Item({ task }) {
         checked: task.checked,
       },
     })
-  }
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -47,32 +45,12 @@ export function Item({ task }) {
         </View>
       </View>
 
-      {/* buttons */}
-      <View style={styles.buttonsContent}>
-        {/* button edit */}
-        <IconButton
-          action={handleTaskUpdateRoute}
-          icon={
-            <MaterialCommunityIcons
-              name="playlist-edit"
-              size={25}
-              color={THEME.COLORS.YELLOW}
-            />
-          }
-        />
-
-        {/* button delete */}
-        <IconButton
-          action={handleDeleteTask}
-          icon={
-            <MaterialIcons
-              name="delete"
-              size={25}
-              color={THEME.COLORS.YELLOW}
-            />
-          }
-        />
-      </View>
+      <ActionButton
+        actions={{
+          update: handleTaskUpdateRoute,
+          delete: handleDeleteTask,
+        }}
+      />
     </View>
   )
 }
