@@ -10,9 +10,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textButton: {
+  label: {
     fontSize: 18,
     fontFamily: THEME.FONTS.BOLD,
     color: THEME.COLORS.WHITE,
+  },
+  back: {
+    backgroundColor: THEME.COLORS.YELLOW,
+    width: 50,
+    height: 50,
+    borderRadius: 99999,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
   },
 })

@@ -13,4 +13,15 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 60,
   },
+  container: {
+    width: 60,
+    height: 60,
+    position: 'absolute',
+    bottom: 20,
+    right: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 999999,
+    backgroundColor: THEME.COLORS.YELLOW,
+  },
 })

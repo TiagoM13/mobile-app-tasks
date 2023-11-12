@@ -30,7 +30,7 @@ export default function Register() {
       <View style={styles.header}>
         <Header />
 
-        <BackButton />
+        <Button type="back" />
       </View>
 
       <Text style={styles.text}>Create task</Text>
@@ -38,7 +38,7 @@ export default function Register() {
       {/* input text */}
       <Input control={control} name="description" />
 
-      <Button press={handleSubmit(handleCreateTask)} text="Save task" />
+      <Button press={handleSubmit(handleCreateTask)} label="Save task" />
     </View>
   )
 }
