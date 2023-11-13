@@ -2,8 +2,14 @@ import { View, TouchableOpacity } from 'react-native'
 import { Foundation } from '@expo/vector-icons'
 
 import { styles } from './styles'
+import { Status } from '@/enums/status'
 
-export function Checkbox({ checked, onCheck }) {
+interface CheckboxProps {
+  checked: boolean
+  onCheck: () => void
+}
+
+export const Checkbox = ({ checked, onCheck }: CheckboxProps) => {
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={onCheck}>
       {checked ? (

@@ -5,7 +5,14 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import THEME from '@/theme'
 import { styles } from './styles'
 
-export const ActionButton = ({ actions }) => {
+type ActionButtonProps = {
+  actions: {
+    update?: () => void
+    delete?: () => void
+  }
+}
+
+export const ActionButton = ({ actions }: ActionButtonProps) => {
   return (
     <View style={styles.buttonsContent}>
       {/* button edit */}

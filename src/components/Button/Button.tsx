@@ -5,7 +5,17 @@ import { useRouter } from 'expo-router'
 
 import { styles } from './styles'
 
-export const Button = ({ type = 'button', label = 'Submit', press }) => {
+type ButtonProps = {
+  type: 'button' | 'back'
+  label?: string
+  press?: () => void
+}
+
+export const Button = ({
+  type = 'button',
+  label = 'Submit',
+  press,
+}: ButtonProps) => {
   const router = useRouter()
   const goBack = () => router.back()
 
