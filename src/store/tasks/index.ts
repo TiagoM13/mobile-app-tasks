@@ -1,6 +1,8 @@
-import { taskData } from '@/database'
+import data from '@/database'
 import { ITask } from '@/entities/task'
 import { Store } from 'pullstate'
+
+const tasks = data as ITask[]
 
 export interface ITasksState {
   tasks: {
@@ -16,7 +18,7 @@ export interface ITasksState {
 }
 
 const defaultTasksState: ITasksState = {
-  tasks: { list: taskData, loading: false },
+  tasks: { list: tasks, loading: false },
   task: { loading: false },
 }
 
