@@ -24,4 +24,12 @@ export const styles = StyleSheet.create({
     borderRadius: 999999,
     backgroundColor: THEME.COLORS.YELLOW,
   },
+  text: {
+    color: THEME.COLORS.WHITE,
+    fontFamily: THEME.FONTS.BOLD,
+    fontSize: 24,
+    lineHeight: 24,
+    fontWeight: '600',
+    marginBottom: 20,
+  },
 })

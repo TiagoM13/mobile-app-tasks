@@ -2,7 +2,6 @@ import { View, TouchableOpacity } from 'react-native'
 import { Foundation } from '@expo/vector-icons'
 
 import { styles } from './styles'
-import { Status } from '@/enums/status'
 
 interface CheckboxProps {
   checked: boolean
