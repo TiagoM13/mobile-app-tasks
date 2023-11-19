@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { useRouter } from 'expo-router'
 
 import { Checkbox } from '../Checkbox/Checkbox'
 import { ActionButton } from '../ActionButton'
@@ -14,27 +13,6 @@ interface ItemProps {
 }
 
 export function Item({ task }: ItemProps) {
-  // const router = useRouter()
-
-  // const handleToggleChecked = React.useCallback(() => {
-  //   toggleCheckedTask(task.id)
-  // }, [toggleCheckedTask])
-
-  // const handleDeleteTask = React.useCallback(() => {
-  //   deleteTask(task.id)
-  // }, [deleteTask])
-
-  // const handleTaskUpdateRoute = React.useCallback(() => {
-  //   router.push({
-  //     pathname: 'update',
-  //     params: {
-  //       id: task.id,
-  //       description: task.title,
-  //       checked: task.status,
-  //     },
-  //   })
-  // }, [])
-
   const checked = task.status === 'completed'
 
   return (

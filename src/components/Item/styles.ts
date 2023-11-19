@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
 })
 
 type Props = {
-  status: 'pending' | 'completed'
+  status?: 'pending' | 'completed'
 }
 
 export const text = ({ status }: Props) =>
