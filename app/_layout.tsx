@@ -1,3 +1,4 @@
+import React from 'react'
 import { SplashScreen, Stack } from 'expo-router'
 import {
   useFonts,
@@ -6,8 +7,6 @@ import {
 } from '@expo-google-fonts/roboto'
 import { StatusBar } from 'expo-status-bar'
 import { View } from 'react-native'
-
-import { TaskProvider } from '@/contexts/tasks'
 
 import { styles } from './styles'
 
@@ -24,21 +23,19 @@ export default function Layout() {
   return (
     <View style={styles.layout}>
       <StatusBar style="light" translucent />
-      <TaskProvider>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: {
-              backgroundColor: 'transparent',
-            },
-            animation: 'fade',
-          }}
-        >
-          <Stack.Screen name="index" />
-          <Stack.Screen name="register" />
-          <Stack.Screen name="update" />
-        </Stack>
-      </TaskProvider>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: 'transparent',
+          },
+          animation: 'fade',
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="register" />
+        <Stack.Screen name="update" />
+      </Stack>
     </View>
   )
 }

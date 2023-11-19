@@ -5,7 +5,7 @@ import { getSchedule } from '@/utils/getSchedule'
 
 import { styles } from './styles'
 
-export function Header() {
+export const Header = () => {
   const { greeting } = getSchedule()
 
   return (

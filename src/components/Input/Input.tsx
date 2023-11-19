@@ -1,12 +1,20 @@
 import React from 'react'
 import { TextInput, View } from 'react-native'
 
-import { Controller } from 'react-hook-form'
+import { Controller, Control } from 'react-hook-form'
 
 import THEME from '@/theme'
 import { styles } from './styles'
 
-export const Input = ({ control, name, defaultValue }) => {
+interface InputProps {
+  control: Control
+  name: string
+  defaultValue?: {
+    title: string
+  }
+}
+
+export const Input = ({ control, name, defaultValue }: InputProps) => {
   return (
     <View style={{ flex: 1 }}>
       <Controller

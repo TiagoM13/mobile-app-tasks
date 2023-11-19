@@ -6,7 +6,7 @@ import { Entypo } from '@expo/vector-icons'
 import { Header } from '@/components/Header/Header'
 import { Listing } from '@/components/Listing/Listing'
 
-import THEME from '@/theme'
+import THEME from '../src/theme'
 import { styles } from './styles'
 
 export default function App() {

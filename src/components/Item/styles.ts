@@ -34,14 +34,19 @@ export const styles = StyleSheet.create({
   },
 })
 
-export const text = ({ checked }) =>
+type Props = {
+  status: 'pending' | 'completed'
+}
+
+export const text = ({ status }: Props) =>
   StyleSheet.create({
     description: {
-      color: checked ? THEME.COLORS.WHITE_300 : THEME.COLORS.WHITE,
+      color:
+        status === 'completed' ? THEME.COLORS.WHITE_300 : THEME.COLORS.WHITE,
       fontSize: 16,
       lineHeight: 16,
       fontWeight: '400',
       fontFamily: THEME.FONTS.REGULAR,
-      textDecorationLine: checked ? 'line-through' : 'none',
+      textDecorationLine: status === 'completed' ? 'line-through' : 'none',
     },
   })
