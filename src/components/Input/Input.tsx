@@ -9,9 +9,7 @@ import { styles } from './styles'
 interface InputProps {
   control: Control
   name: string
-  defaultValue?: {
-    title: string
-  }
+  defaultValue?: string
 }
 
 export const Input = ({ control, name, defaultValue }: InputProps) => {

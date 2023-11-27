@@ -7,28 +7,44 @@ import { Header } from '@/components/Header/Header'
 import { Input } from '@/components/Input/Input'
 import { Button } from '@/components/Button/Button'
 
-import { useTaskContext } from '@/hooks/taskContext'
-
 import { styles } from './styles/screens'
+import { ITask } from '@/entities/task'
+import { useTask } from '@/hooks/task'
+import { refreshTask } from '@/store/tasks/actions'
+import { ErrorMessage } from '@/components/ErrorMessage/ErrorMessage'
 
 export default function Update() {
+  const { data, loading } = useTask()
   const { control, handleSubmit } = useForm()
-  // const params = useLocalSearchParams()
-  // const { id, description, checked } = params
 
-  // function handleUpdateTask({ description }) {
-  //   if (description === '') {
-  //     Alert.alert('Empty field', 'Write a task to be able to update!')
-  //     return
-  //   }
+  const params = useLocalSearchParams()
+  const { id } = params as ITask
 
-  //   const taskId = parseInt(id)
-  //   const taskToUpdate = tasks.find((task) => task.id === taskId)
+  const taskId = data?.id === id
 
-  //   if (taskToUpdate) {
-  //     updateTask(taskId, description, checked)
-  //   }
-  // }
+  const refresh = React.useCallback(() => {
+    if (id) {
+      refreshTask(id!)
+    }
+  }, [id])
+
+  React.useEffect(() => {
+    refresh()
+  }, [])
+
+  const handleUpdateTask = (title: string) => {
+    if (title === '') {
+      Alert.alert('Empty field', 'Write a task to be able to update!')
+      return
+    }
+
+    // const taskId = parseInt(id)
+    // const taskToUpdate = tasks.find((task) => task.id === taskId)
+
+    if (data?.title) {
+      // updateTask(taskId, description, checked)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -40,17 +56,23 @@ export default function Update() {
 
       <Text style={styles.text}>Update task</Text>
 
-      <Input
-        control={control}
-        name="description"
-        defaultValue={{ title: 'Teste' }}
-      />
+      {loading && <ErrorMessage text="Loading Task..." />}
 
-      <Button
-        type="button"
-        label="Updated task"
-        press={handleSubmit(() => console.log())}
-      />
+      {taskId && !loading && (
+        <>
+          <Input
+            control={control}
+            name="description"
+            defaultValue={data?.title}
+          />
+
+          <Button
+            type="button"
+            label="Updated task"
+            press={handleSubmit(() => console.log())}
+          />
+        </>
+      )}
     </View>
   )
 }

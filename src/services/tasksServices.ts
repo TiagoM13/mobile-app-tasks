@@ -6,3 +6,9 @@ export const getAllTasksService = async () => {
 
   return data
 }
+
+export const getTaskService = async (id: string) => {
+  const { data } = await ms.get<ITask>(`/tasks/${id}`)
+
+  return data
+}

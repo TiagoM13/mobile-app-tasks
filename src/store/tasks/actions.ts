@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { getAllTasksService } from '@/services/tasksServices'
+import { getAllTasksService, getTaskService } from '@/services/tasksServices'
 import { store } from '@/store/tasks'
 
 export const refreshTasks = async () => {
@@ -21,6 +21,31 @@ export const refreshTasks = async () => {
     store.update((s) => {
       s.tasks.loading = false
       s.tasks.loadError = true
+    })
+
+    throw err
+  }
+}
+
+export const refreshTask = async (id: string) => {
+  try {
+    store.update((s) => {
+      s.task.loading = true
+      s.task.loadError = false
+    })
+
+    const response = await getTaskService(id)
+
+    store.update(s => {
+      s.task.data = response
+      s.task.loading = false
+    })
+
+    return response
+  } catch (err: unknown) {
+    store.update((s) => {
+      s.task.loading = false
+      s.task.loadError = true
     })
 
     throw err
