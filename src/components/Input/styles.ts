@@ -12,4 +12,8 @@ export const styles = StyleSheet.create({
     fontFamily: THEME.FONTS.REGULAR,
     color: THEME.COLORS.WHITE,
   },
+  text: {
+    color: THEME.COLORS.RED,
+    fontSize: 16,
+  },
 })
