@@ -12,3 +12,21 @@ export const getTaskService = async (id: string) => {
 
   return data
 }
+
+export const createTaskService = async (task: ITask) => {
+  try {
+    const { data } = await ms.post<ITask>('/tasks', task)
+
+    return data
+  } catch (err) {
+    console.error('Erro ao criar a tarefa:', err)
+
+    throw err
+  }
+}
+
+export const deleteTaskService = async (id: string) => {
+  const { data } = await ms.delete<ITask>(`/tasks/${id}`)
+
+  return data
+}

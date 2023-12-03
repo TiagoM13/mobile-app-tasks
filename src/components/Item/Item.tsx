@@ -8,6 +8,7 @@ import { ITask } from '@/entities/task'
 
 import { styles, text } from './styles'
 import { useRouter } from 'expo-router'
+import { deleteTask } from '@/store/tasks/actions'
 
 interface ItemProps {
   task: ITask
@@ -23,6 +24,10 @@ export function Item({ task }: ItemProps) {
         id: task.id,
       },
     })
+  }, [])
+
+  const handleDeleteTask = React.useCallback(async (id: string) => {
+    await deleteTask(id)
   }, [])
 
   const checked = task.status === 'completed'
@@ -49,8 +54,10 @@ export function Item({ task }: ItemProps) {
       </View>
 
       <ActionButton
+        disabled={!!checked}
         actions={{
           update: handleTaskUpdateRoute,
+          delete: () => handleDeleteTask(task.id as string),
         }}
       />
     </View>

@@ -4,18 +4,21 @@ import { View, ScrollView } from 'react-native'
 import { Item } from '../Item/Item'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 
-import { useTasks } from '@/hooks/task'
-import { refreshTasks } from '@/store/tasks/actions'
+import { ITask } from '@/entities/task'
 
-export const Listing = () => {
-  const { loading, list } = useTasks()
+type ListProps = {
+  list: ITask[]
+  loading?: boolean
+  loadError?: boolean
+}
 
-  React.useEffect(() => {
-    refreshTasks()
-  }, [])
-
+export const Listing = ({ list, loading, loadError }: ListProps) => {
   if (loading) {
     return <ErrorMessage text="Loading Tasks..." />
+  }
+
+  if (loadError) {
+    return <ErrorMessage text="Error loading tasks" />
   }
 
   return (

@@ -10,17 +10,22 @@ type ActionButtonProps = {
     update?: () => void
     delete?: () => void
   }
+  disabled?: boolean
 }
 
-export const ActionButton = ({ actions }: ActionButtonProps) => {
+export const ActionButton = ({ actions, disabled }: ActionButtonProps) => {
   return (
     <View style={styles.buttonsContent}>
       {/* button edit */}
-      <TouchableOpacity activeOpacity={0.7} onPress={actions.update}>
+      <TouchableOpacity
+        disabled={disabled}
+        activeOpacity={0.7}
+        onPress={actions.update}
+      >
         <MaterialCommunityIcons
           name="playlist-edit"
           size={25}
-          color={THEME.COLORS.YELLOW}
+          color={disabled ? THEME.COLORS.WHITE_300 : THEME.COLORS.YELLOW}
         />
       </TouchableOpacity>
 

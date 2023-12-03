@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { getAllTasksService, getTaskService } from '@/services/tasksServices'
+import { ITask } from '@/entities/task'
+import { createTaskService, deleteTaskService, getAllTasksService, getTaskService } from '@/services/tasksServices'
 import { store } from '@/store/tasks'
 
 export const refreshTasks = async () => {
@@ -51,3 +52,53 @@ export const refreshTask = async (id: string) => {
     throw err
   }
 }
+
+export const createTask = async (task: ITask) => {
+  try {
+    store.update(s => {
+      s.task.loading = true
+      s.task.loadError = false
+    })
+
+    const response = await createTaskService(task)
+
+    store.update(s => {
+      s.task.data = response
+      s.task.loading = false
+    })
+
+    return response
+  } catch (err) {
+    store.update((s) => {
+      s.task.loading = false;
+      s.task.loadError = true;
+    });
+
+    throw err;
+  }
+}
+
+export const deleteTask = async (id: string) => {
+  try {
+    store.update(s => {
+      s.task.loading = true
+      s.task.loadError = false
+    })
+
+    const response = await deleteTaskService(id)
+
+    store.update(s => {
+      s.task.data = response
+      s.tasks.loading = false
+    })
+
+    return response
+  } catch (err) {
+    store.update((s) => {
+      s.task.loading = false;
+      s.task.loadError = true;
+    });
+
+    throw err;
+  }
+} 
