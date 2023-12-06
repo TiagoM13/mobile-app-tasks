@@ -8,6 +8,7 @@ import { styles } from './styles'
 type ButtonProps = {
   type: 'button' | 'back'
   label?: string
+  loading?: boolean
   press?: () => void
 }
 
@@ -15,6 +16,7 @@ export const Button = ({
   type = 'button',
   label = 'Submit',
   press,
+  loading,
 }: ButtonProps) => {
   const router = useRouter()
   const goBack = () => router.back()
@@ -32,7 +34,12 @@ export const Button = ({
   }
 
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={press}>
+    <TouchableOpacity
+      disabled={loading}
+      style={styles.button}
+      activeOpacity={0.7}
+      onPress={press}
+    >
       <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
   )

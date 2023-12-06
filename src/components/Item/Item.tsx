@@ -26,8 +26,8 @@ export function Item({ task }: ItemProps) {
     })
   }, [])
 
-  const handleDeleteTask = React.useCallback(async (id: string) => {
-    await deleteTask(id)
+  const handleDeleteTask = React.useCallback(async () => {
+    await deleteTask(String(task.id))
   }, [])
 
   const checked = task.status === 'completed'
@@ -57,7 +57,7 @@ export function Item({ task }: ItemProps) {
         disabled={!!checked}
         actions={{
           update: handleTaskUpdateRoute,
-          delete: () => handleDeleteTask(task.id as string),
+          delete: handleDeleteTask,
         }}
       />
     </View>

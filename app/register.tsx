@@ -10,24 +10,22 @@ import { styles } from './styles/screens'
 import { createTask } from '@/store/tasks/actions'
 import { ITask } from '@/entities/task'
 import { useRouter } from 'expo-router'
+import { useTask } from '@/hooks/task'
 
 type FormProps = {
   title?: string
 }
 
 export default function Register() {
+  const { loading } = useTask()
   const router = useRouter()
   const { control, handleSubmit } = useForm<FormProps>()
 
   const handleCreateTask = React.useCallback(async (task: ITask) => {
-    try {
-      await createTask(task)
+    await createTask(task)
+    router.push('/')
 
-      Alert.alert('Task Created', 'Your task has been successfully created!')
-      // router.push('/')
-    } catch (error) {
-      console.error('Error creating task:', error)
-    }
+    Alert.alert('Task Created', 'Your task has been successfully created!')
   }, [])
 
   return (
@@ -46,6 +44,7 @@ export default function Register() {
         type="button"
         press={handleSubmit(handleCreateTask)}
         label="Save task"
+        loading={loading}
       />
     </View>
   )

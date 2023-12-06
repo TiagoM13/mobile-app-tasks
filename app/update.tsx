@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Alert } from 'react-native'
-import { useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useForm } from 'react-hook-form'
 
 import { Header } from '@/components/Header/Header'
@@ -10,13 +10,14 @@ import { Button } from '@/components/Button/Button'
 import { styles } from './styles/screens'
 import { ITask } from '@/entities/task'
 import { useTask } from '@/hooks/task'
-import { refreshTask } from '@/store/tasks/actions'
+import { refreshTask, updateTask } from '@/store/tasks/actions'
 import { ErrorMessage } from '@/components/ErrorMessage/ErrorMessage'
 
 export default function Update() {
   const { data, loading } = useTask()
   const { control, handleSubmit } = useForm()
 
+  const router = useRouter()
   const params = useLocalSearchParams()
   const { id } = params as ITask
 
@@ -32,19 +33,15 @@ export default function Update() {
     refresh()
   }, [])
 
-  const handleUpdateTask = (title: string) => {
-    if (title === '') {
-      Alert.alert('Empty field', 'Write a task to be able to update!')
-      return
-    }
+  const handleUpdateTask = React.useCallback(
+    async (task: ITask) => {
+      await updateTask(String(id), task)
+      router.push('/')
 
-    // const taskId = parseInt(id)
-    // const taskToUpdate = tasks.find((task) => task.id === taskId)
-
-    if (data?.title) {
-      // updateTask(taskId, description, checked)
-    }
-  }
+      Alert.alert('Task Updated', 'Your task has been successfully updated!')
+    },
+    [id],
+  )
 
   return (
     <View style={styles.container}>
@@ -60,16 +57,13 @@ export default function Update() {
 
       {taskId && !loading && (
         <>
-          <Input
-            control={control}
-            name="description"
-            defaultValue={data?.title}
-          />
+          <Input control={control} name="title" defaultValue={data?.title} />
 
           <Button
             type="button"
             label="Updated task"
-            press={handleSubmit(() => console.log())}
+            press={handleSubmit(handleUpdateTask)}
+            loading={loading}
           />
         </>
       )}

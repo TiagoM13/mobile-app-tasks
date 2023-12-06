@@ -14,15 +14,15 @@ export const getTaskService = async (id: string) => {
 }
 
 export const createTaskService = async (task: ITask) => {
-  try {
-    const { data } = await ms.post<ITask>('/tasks', task)
+  const { data } = await ms.post<ITask>('/tasks', task)
 
-    return data
-  } catch (err) {
-    console.error('Erro ao criar a tarefa:', err)
+  return data
+}
 
-    throw err
-  }
+export const updateTaskService = async (id: string, task: ITask) => {
+  const { data } = await ms.put<ITask>(`/tasks/${id}`, task)
+
+  return data
 }
 
 export const deleteTaskService = async (id: string) => {

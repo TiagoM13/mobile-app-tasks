@@ -10,11 +10,10 @@ import THEME from '../src/theme'
 import { styles } from './styles'
 import { SearchInput } from '@/components/SearchInput/SearchInput'
 import { refreshTasks } from '@/store/tasks/actions'
-import { useTask, useTasks } from '@/hooks/task'
+import { useTasks } from '@/hooks/task'
 
 export default function App() {
   const { loading, loadError, list } = useTasks()
-  const { data } = useTask()
 
   const router = useRouter()
   const [searchTerm, setSearchTerm] = React.useState('')
@@ -25,7 +24,7 @@ export default function App() {
 
   React.useEffect(() => {
     refreshTasks()
-  }, [data])
+  }, [])
 
   return (
     <View style={styles.app}>
