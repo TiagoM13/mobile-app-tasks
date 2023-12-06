@@ -6,3 +6,27 @@ export const getAllTasksService = async () => {
 
   return data
 }
+
+export const getTaskService = async (id: string) => {
+  const { data } = await ms.get<ITask>(`/tasks/${id}`)
+
+  return data
+}
+
+export const createTaskService = async (task: ITask) => {
+  const { data } = await ms.post<ITask>('/tasks', task)
+
+  return data
+}
+
+export const updateTaskService = async (id: string, task: ITask) => {
+  const { data } = await ms.put<ITask>(`/tasks/${id}`, task)
+
+  return data
+}
+
+export const deleteTaskService = async (id: string) => {
+  const { data } = await ms.delete<ITask>(`/tasks/${id}`)
+
+  return data
+}

@@ -7,18 +7,26 @@ import { Input } from '@/components/Input/Input'
 import { Button } from '@/components/Button/Button'
 
 import { styles } from './styles/screens'
+import { createTask } from '@/store/tasks/actions'
+import { ITask } from '@/entities/task'
+import { useRouter } from 'expo-router'
+import { useTask } from '@/hooks/task'
+
+type FormProps = {
+  title?: string
+}
 
 export default function Register() {
-  const { control, handleSubmit } = useForm()
+  const { loading } = useTask()
+  const router = useRouter()
+  const { control, handleSubmit } = useForm<FormProps>()
 
-  // function handleCreateTask(title: string) {
-  //   if (title === '') {
-  //     Alert.alert('Empty field', 'Write a task to proceed!')
-  //     return
-  //   }
+  const handleCreateTask = React.useCallback(async (task: ITask) => {
+    await createTask(task)
+    router.push('/')
 
-  //   createTask(title)
-  // }
+    Alert.alert('Task Created', 'Your task has been successfully created!')
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -30,13 +38,13 @@ export default function Register() {
 
       <Text style={styles.text}>Create task</Text>
 
-      {/* input text */}
-      <Input control={control} name="description" />
+      <Input control={control} name="title" />
 
       <Button
         type="button"
-        press={handleSubmit(() => console.log())}
+        press={handleSubmit(handleCreateTask)}
         label="Save task"
+        loading={loading}
       />
     </View>
   )

@@ -4,6 +4,7 @@ export default {
     WHITE: '#FFFFFF',
     WHITE_300: '#D6D6D6',
     YELLOW: '#DFBD43',
+    RED: '#EB0C0C',
   },
   FONTS: {
     REGULAR: 'Roboto_400Regular',
