@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     fontFamily: THEME.FONTS.BOLD,
     fontSize: 24,
     lineHeight: 24,
-    fontWeight: 600,
+    fontWeight: '600',
     marginBottom: 20,
   },
 })

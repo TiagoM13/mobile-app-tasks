@@ -3,10 +3,15 @@ import { Foundation } from '@expo/vector-icons'
 
 import { styles } from './styles'
 
-export function Checkbox({ checked, onCheck }) {
+interface CheckboxProps {
+  checked?: 'pending' | 'completed'
+  onCheck: () => void
+}
+
+export const Checkbox = ({ checked, onCheck }: CheckboxProps) => {
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={onCheck}>
-      {checked ? (
+      {checked === 'completed' ? (
         <View style={styles.checked}>
           <Foundation name="check" size={22} color="white" />
         </View>

@@ -5,7 +5,12 @@ import { AntDesign } from '@expo/vector-icons'
 import THEME from '@/theme'
 import { styles } from './styles'
 
-export const SearchInput = ({ value, onChange }) => {
+type SearchInputProps = {
+  value: string
+  onChange: () => void
+}
+
+export const SearchInput = ({ value, onChange }: SearchInputProps) => {
   return (
     <View style={styles.container}>
       <AntDesign name="search1" size={24} color={THEME.COLORS.YELLOW} />

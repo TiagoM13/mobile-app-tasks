@@ -5,7 +5,19 @@ import { useRouter } from 'expo-router'
 
 import { styles } from './styles'
 
-export const Button = ({ type = 'button', label = 'Submit', press }) => {
+type ButtonProps = {
+  type: 'button' | 'back'
+  label?: string
+  loading?: boolean
+  press?: () => void
+}
+
+export const Button = ({
+  type = 'button',
+  label = 'Submit',
+  press,
+  loading,
+}: ButtonProps) => {
   const router = useRouter()
   const goBack = () => router.back()
 
@@ -22,7 +34,12 @@ export const Button = ({ type = 'button', label = 'Submit', press }) => {
   }
 
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={press}>
+    <TouchableOpacity
+      disabled={loading}
+      style={styles.button}
+      activeOpacity={0.7}
+      onPress={press}
+    >
       <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
   )
