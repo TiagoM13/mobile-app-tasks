@@ -1,6 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { ITask } from '@/entities/task'
-import { createTaskService, deleteTaskService, getAllTasksService, getTaskService, updateTaskService } from '@/services/tasksServices'
+import {
+  createTaskService,
+  deleteTaskService,
+  getAllTasksService,
+  getTaskService,
+  toggleTaskStatusService,
+  updateTaskService
+} from '@/services/tasksServices'
 import { store } from '@/store/tasks'
 
 export const refreshTasks = async () => {
@@ -116,6 +123,35 @@ export const updateTask = async (id: string, task: ITask) => {
   }
 }
 
+export const toggleTaskStatus = async (id: string) => {
+  try {
+    store.update(s => {
+      s.task.data = undefined
+      s.task.loading = true
+      s.task.loadError = false;
+    })
+
+    const response = await toggleTaskStatusService(id)
+
+    store.update(s => {
+      const index = s.tasks.list.findIndex(item => item === id)
+      s.tasks.list[index] = response
+    })
+
+    return response
+  } catch (err) {
+    store.update((s) => {
+      s.task.loadError = true;
+    });
+
+    throw err
+  } finally {
+    store.update((s) => {
+      s.task.loading = false;
+    });
+  }
+}
+
 export const deleteTask = async (id: string) => {
   try {
     store.update(s => {
@@ -134,7 +170,6 @@ export const deleteTask = async (id: string) => {
     return id
   } catch (err) {
     store.update((s) => {
-      s.task.loading = false;
       s.task.loadError = true;
     });
 

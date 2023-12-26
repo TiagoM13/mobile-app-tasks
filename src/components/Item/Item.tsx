@@ -1,5 +1,8 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { useRouter } from 'expo-router'
+
+import { deleteTask, toggleTaskStatus } from '@/store/tasks/actions'
 
 import { Checkbox } from '../Checkbox/Checkbox'
 import { ActionButton } from '../ActionButton'
@@ -7,8 +10,6 @@ import { ActionButton } from '../ActionButton'
 import { ITask } from '@/entities/task'
 
 import { styles, text } from './styles'
-import { useRouter } from 'expo-router'
-import { deleteTask } from '@/store/tasks/actions'
 
 interface ItemProps {
   task: ITask
@@ -16,6 +17,9 @@ interface ItemProps {
 
 export function Item({ task }: ItemProps) {
   const router = useRouter()
+  const [checked, setChecked] = React.useState<
+    'pending' | 'completed' | undefined
+  >(task.status)
 
   const handleTaskUpdateRoute = React.useCallback(() => {
     router.push({
@@ -30,7 +34,11 @@ export function Item({ task }: ItemProps) {
     await deleteTask(String(task.id))
   }, [])
 
-  const checked = task.status === 'completed'
+  const handleToggleTaskStatus = React.useCallback(async () => {
+    await toggleTaskStatus(String(task.id))
+
+    setChecked((prev) => (prev === 'completed' ? 'pending' : 'completed'))
+  }, [])
 
   // format dates
   const currentDate = task.updated_at ? task.updated_at : task.created_at
@@ -41,7 +49,7 @@ export function Item({ task }: ItemProps) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Checkbox checked={checked} onCheck={() => console.log()} />
+        <Checkbox checked={checked} onCheck={handleToggleTaskStatus} />
 
         <View style={styles.textContent}>
           <Text style={styles.time}>
@@ -54,7 +62,7 @@ export function Item({ task }: ItemProps) {
       </View>
 
       <ActionButton
-        disabled={!!checked}
+        disabled={checked === 'completed'}
         actions={{
           update: handleTaskUpdateRoute,
           delete: handleDeleteTask,
