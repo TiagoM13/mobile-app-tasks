@@ -25,6 +25,12 @@ export const updateTaskService = async (id: string, task: ITask) => {
   return data
 }
 
+export const toggleTaskStatusService = async (id: string) => {
+  const { data } = await ms.put<ITask>(`/tasks/${id}/toggle-status`)
+
+  return data
+}
+
 export const deleteTaskService = async (id: string) => {
   const { data } = await ms.delete<ITask>(`/tasks/${id}`)
 
