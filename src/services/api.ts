@@ -1,5 +1,6 @@
 import axios from 'axios'
+import { BASE_API_URL } from '@env'
 
 export const ms = axios.create({
-  baseURL: `${process.env.APP_BACKEND_API_LOCAL}:3333/api`,
+  baseURL: `${BASE_API_URL}/api`,
 })
