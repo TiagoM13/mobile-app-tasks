@@ -5,14 +5,15 @@ import { Entypo } from '@expo/vector-icons'
 
 import { Header } from '@/components/Header/Header'
 import { Listing } from '@/components/Listing/Listing'
-
-import THEME from '../src/theme'
-import { styles } from './styles'
 import { SearchInput } from '@/components/SearchInput/SearchInput'
-import { refreshTasks } from '@/store/tasks/actions'
-import { useTasks } from '@/hooks/task'
 
-export default function App() {
+import { useTasks } from '@/hooks/task'
+import { refreshTasks } from '@/store/tasks/actions'
+
+import THEME from '@/theme'
+import { styles } from './styles'
+
+const App = () => {
   const { loading, loadError, list } = useTasks()
 
   const router = useRouter()
@@ -45,3 +46,5 @@ export default function App() {
     </View>
   )
 }
+
+export default App

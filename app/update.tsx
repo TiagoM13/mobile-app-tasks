@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
 import { View, Text, Alert } from 'react-native'
 import { useLocalSearchParams, useRouter } from 'expo-router'
@@ -6,14 +7,15 @@ import { useForm } from 'react-hook-form'
 import { Header } from '@/components/Header/Header'
 import { Input } from '@/components/Input/Input'
 import { Button } from '@/components/Button/Button'
+import { ErrorMessage } from '@/components/ErrorMessage/ErrorMessage'
 
-import { styles } from './styles/screens'
 import { ITask } from '@/entities/task'
 import { useTask } from '@/hooks/task'
 import { refreshTask, updateTask } from '@/store/tasks/actions'
-import { ErrorMessage } from '@/components/ErrorMessage/ErrorMessage'
 
-export default function Update() {
+import { styles } from './styles/screens'
+
+const Update = () => {
   const { data, loading } = useTask()
   const { control, handleSubmit } = useForm()
 
@@ -70,3 +72,5 @@ export default function Update() {
     </View>
   )
 }
+
+export default Update
