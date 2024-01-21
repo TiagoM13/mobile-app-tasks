@@ -1,4 +1,4 @@
-# Todolist - Mobile App
+# Mobile App Tasks
 
 Aplicação de uma lista de tarefas, com as seguintes características, criação, listagem, atualização e deleção de tarefas, as tarefas são exibidas em tempo real, mostrando a hora da criação e sua descrição. O usuário pode interagir para concluir a tarefa ou desmarcar como incompleta, uma funcionalidade de toggle (checkbox).
 
@@ -12,14 +12,14 @@ Aplicação de uma lista de tarefas, com as seguintes características, criaçã
 
 ## Como rodar o projeto
 
-Clone esse repositório `todolist` em uma pasta de sua escolha
+Clone esse repositório `mobile-app-tasks` em uma pasta de sua escolha
 
 ```bash
   # clone o repositório
-  git clone https://github.com/TiagoM13/todolist.git
+  git clone https://github.com/TiagoM13/mobile-app-tasks.git
 
   # abra a pasta do projeto 
-  cd todolist 
+  cd mobile-app-tasks 
 
   # instale as dependecias
   npm install
@@ -34,13 +34,13 @@ Clone esse repositório `todolist` em uma pasta de sua escolha
 ## Funcionalidades
 
 - Criação de tarefas
-- Listagem em tempo real das tarefas
+- Listagem das tarefas
 - Atualização da tarefa
 - Deleção da tarefa
-- Salvando na mémoria do dispositivo
-- Busca de tarefas
+- Checkbox de tarefa
+- Intergração de a [api-tasks](https://github.com/TiagoM13/api-tasks.git)
 
 
 ## Stack utilizada
 
-**Front-end:** React, React Native, Expo, Expo Router, React Native AsyncStorage
+**Front-end:** React, React Native, Expo, Expo Router, Pullstate, React Hook Form
