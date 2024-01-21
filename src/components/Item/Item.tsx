@@ -7,7 +7,7 @@ import { deleteTask, toggleTaskStatus } from '@/store/tasks/actions'
 import { Checkbox } from '../Checkbox/Checkbox'
 import { ActionButton } from '../ActionButton'
 
-import { ITask } from '@/entities/task'
+import { ITask, StatusTask } from '@/entities/task'
 
 import { styles, text } from './styles'
 
@@ -17,9 +17,9 @@ interface ItemProps {
 
 export function Item({ task }: ItemProps) {
   const router = useRouter()
-  const [checked, setChecked] = React.useState<
-    'pending' | 'completed' | undefined
-  >(task.status)
+  const [checked, setChecked] = React.useState<StatusTask | undefined>(
+    task.status,
+  )
 
   const handleTaskUpdateRoute = React.useCallback(() => {
     router.push({
@@ -37,7 +37,9 @@ export function Item({ task }: ItemProps) {
   const handleToggleTaskStatus = React.useCallback(async () => {
     await toggleTaskStatus(String(task.id))
 
-    setChecked((prev) => (prev === 'completed' ? 'pending' : 'completed'))
+    setChecked((prev) =>
+      prev === StatusTask.COMPLETED ? StatusTask.PENDING : StatusTask.COMPLETED,
+    )
   }, [])
 
   // format dates
@@ -62,7 +64,7 @@ export function Item({ task }: ItemProps) {
       </View>
 
       <ActionButton
-        disabled={checked === 'completed'}
+        disabled={checked === StatusTask.COMPLETED}
         actions={{
           update: handleTaskUpdateRoute,
           delete: handleDeleteTask,
