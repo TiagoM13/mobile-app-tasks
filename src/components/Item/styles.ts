@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native'
 
+import { StatusTask } from '@/entities/task'
+
 import THEME from '@/theme'
 
 export const styles = StyleSheet.create({
@@ -35,7 +37,7 @@ export const styles = StyleSheet.create({
 })
 
 type Props = {
-  status?: 'pending' | 'completed'
+  status?: StatusTask
 }
 
 export const text = ({ status }: Props) =>

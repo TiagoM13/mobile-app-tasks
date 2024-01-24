@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { BASE_API_URL } from '@env'
+
+const { EXPO_PUBLIC_API_TASK_URL } = process.env
 
 export const ms = axios.create({
-  baseURL: `${BASE_API_URL}/api`,
+  baseURL: `${EXPO_PUBLIC_API_TASK_URL}/api`,
 })

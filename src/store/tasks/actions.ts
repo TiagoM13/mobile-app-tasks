@@ -7,7 +7,7 @@ import {
   getTaskService,
   toggleTaskStatusService,
   updateTaskService
-} from '@/services/tasksServices'
+} from '@/services/tasks'
 import { store } from '@/store/tasks'
 
 export const refreshTasks = async () => {
