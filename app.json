@@ -17,6 +17,13 @@
     "plugins": [
       "expo-router"
     ],
+    "web": {
+      "bundler": "metro"
+    },
+    "experiments": {
+      "typedRoutes": true,
+      "tsconfigPaths": true
+    },
     "android": {
       "package": "app.android"
     }
