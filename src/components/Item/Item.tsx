@@ -23,9 +23,9 @@ export function Item({ task }: ItemProps) {
 
   const handleTaskUpdateRoute = React.useCallback(() => {
     router.push({
-      pathname: 'update',
+      pathname: '/(tabs)/new',
       params: {
-        id: task.id,
+        id: String(task.id),
       },
     })
   }, [])
