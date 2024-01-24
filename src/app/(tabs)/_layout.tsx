@@ -1,8 +1,9 @@
+import React from 'react'
 import { Tabs } from 'expo-router'
 import { MaterialIcons } from '@expo/vector-icons'
 
-import React from 'react'
 import ButtonPlus from '@/components/ButtonPlus'
+
 import { ContainerNavigatorRoot } from '@/styles'
 
 const screenOptions = {
@@ -23,7 +24,7 @@ export default function TabRoutesLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Inicio',
+            title: 'Tasks',
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="home" size={size} color={color} />
             ),
@@ -31,9 +32,9 @@ export default function TabRoutesLayout() {
         />
 
         <Tabs.Screen
-          name="new"
+          name="task"
           options={{
-            title: 'New',
+            title: 'Task Form',
             tabBarIcon: ({ focused, color, size }) => (
               <ButtonPlus size={size} color={color} focused={focused} />
             ),
