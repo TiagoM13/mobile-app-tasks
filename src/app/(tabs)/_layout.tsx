@@ -20,9 +20,9 @@ const screenOptions = {
 export default function TabRoutesLayout() {
   return (
     <ContainerNavigatorRoot>
-      <Tabs initialRouteName="index" screenOptions={screenOptions}>
+      <Tabs initialRouteName="home" screenOptions={screenOptions}>
         <Tabs.Screen
-          name="index"
+          name="home"
           options={{
             title: 'Tasks',
             tabBarIcon: ({ color, size }) => (
@@ -32,9 +32,9 @@ export default function TabRoutesLayout() {
         />
 
         <Tabs.Screen
-          name="task"
+          name="new"
           options={{
-            title: 'Task Form',
+            title: 'Create Task',
             tabBarIcon: ({ focused, color, size }) => (
               <ButtonPlus size={size} color={color} focused={focused} />
             ),
