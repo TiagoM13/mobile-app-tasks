@@ -21,9 +21,9 @@ export function Item({ task }: ItemProps) {
     task.status,
   )
 
-  const handleTaskUpdateRoute = React.useCallback(() => {
+  const handleEditTask = React.useCallback(() => {
     router.push({
-      pathname: '/(tabs)/new',
+      pathname: '/(tabs)/home/edit',
       params: {
         id: String(task.id),
       },
@@ -66,7 +66,7 @@ export function Item({ task }: ItemProps) {
       <ActionButton
         disabled={checked === StatusTask.COMPLETED}
         actions={{
-          update: handleTaskUpdateRoute,
+          update: handleEditTask,
           delete: handleDeleteTask,
         }}
       />

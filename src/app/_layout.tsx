@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from 'expo-router'
+import { Slot } from 'expo-router'
 import {
   useFonts,
   Roboto_400Regular,
@@ -11,6 +11,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 
 import { ContainerNavigatorRoot } from '@/styles'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -48,13 +49,12 @@ const Layout = () => {
   }
 
   return (
-    <ContainerNavigatorRoot onLayout={onLayoutRootView}>
-      <StatusBar style="light" translucent />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="(auth)" />
-      </Stack>
-    </ContainerNavigatorRoot>
+    <GestureHandlerRootView onLayout={onLayoutRootView} style={{ flex: 1 }}>
+      <ContainerNavigatorRoot>
+        <StatusBar style="light" translucent />
+        <Slot />
+      </ContainerNavigatorRoot>
+    </GestureHandlerRootView>
   )
 }
 
