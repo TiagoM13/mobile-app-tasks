@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { Header } from '@/components/Header/Header'
 import { Input } from '@/components/Input/Input'
 import { Button } from '@/components/Button/Button'
-import { ErrorMessage } from '@/components/ErrorMessage/ErrorMessage'
+import { Message } from '@/components/Message/Message'
 
 import { ITask } from '@/entities/task'
 import { useTask } from '@/hooks/task'
@@ -50,14 +50,13 @@ const EditTask = () => {
 
       <Title>Update task</Title>
 
-      {loading && <ErrorMessage text="Loading Task..." />}
+      {loading && <Message text="Loading Task..." />}
 
       {taskId && !loading && (
         <>
           <Input control={control} name="title" defaultValue={data?.title} />
 
           <Button
-            type="button"
             label="Update"
             loading={loading}
             press={handleSubmit(handleUpdateTask)}

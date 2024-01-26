@@ -2,8 +2,8 @@ import React from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
 import { Header } from '@/components/Header/Header'
-import { SearchInput } from '@/components/SearchInput/SearchInput'
-import { ErrorMessage } from '@/components/ErrorMessage/ErrorMessage'
+import { Search } from '@/components/Search'
+import { Message } from '@/components/Message/Message'
 import { Item } from '@/components/Item/Item'
 import Loading from '@/components/Loading'
 
@@ -13,33 +13,42 @@ import { refreshTasks } from '@/store/tasks/actions'
 import { Title, ViewContainer } from '@/styles'
 
 export default function Tasks() {
+  const [query, setQuery] = React.useState('')
   const { loading, loadError, list } = useTasks()
-
-  const [searchTerm, setSearchTerm] = React.useState('')
 
   React.useEffect(() => {
     refreshTasks()
-  }, [])
+  }, [query])
+
+  const filteredTasks = list.filter((task) =>
+    task.title?.toLowerCase().includes(query.toLowerCase()),
+  )
 
   return (
     <ViewContainer>
       <Header />
       <Title>Today’s tasks</Title>
-      <SearchInput value={searchTerm} onChange={() => setSearchTerm} />
+      <Search value={query} onChange={setQuery} />
 
-      {loadError && <ErrorMessage text="Error loading tasks" />}
+      {loadError && <Message text="Error loading tasks" />}
+
+      {filteredTasks.length === 0 && !loading && (
+        <Message text="No tasks found" />
+      )}
 
       {loading ? (
         <Loading />
       ) : (
-        <SafeAreaView style={{ flex: 1, marginTop: 20 }}>
-          <FlatList
-            data={list}
-            renderItem={({ item, index }) => <Item key={index} task={item} />}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 100 }}
-          />
-        </SafeAreaView>
+        filteredTasks.length !== 0 && (
+          <SafeAreaView style={{ flex: 1, marginTop: 20 }}>
+            <FlatList
+              data={filteredTasks}
+              renderItem={({ item, index }) => <Item key={index} task={item} />}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 100 }}
+            />
+          </SafeAreaView>
+        )
       )}
     </ViewContainer>
   )

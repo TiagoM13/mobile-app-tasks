@@ -40,9 +40,8 @@ export default function CreateTask() {
       <Input control={control} name="title" defaultValue="" />
 
       <Button
-        type="button"
-        loading={loading}
         label="Create"
+        loading={loading}
         press={handleSubmit(handleCreateTask)}
       />
     </ViewContainer>
