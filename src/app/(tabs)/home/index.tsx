@@ -32,7 +32,7 @@ export default function Tasks() {
 
       {loadError && <Message text="Error loading tasks" />}
 
-      {filteredTasks.length === 0 && !loading && (
+      {filteredTasks.length === 0 && !loading && !loadError && (
         <Message text="No tasks found" />
       )}
 
